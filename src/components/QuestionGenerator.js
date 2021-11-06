@@ -25,7 +25,7 @@ const QuestionGenerator = (props) => {
     }
     const handleDownload = async(e)=>{
       e.preventDefault()
-      const response = await fetch("http://localhost:5000/file/download", {
+      const response = await fetch("http://159.65.152.103:5000/file/download", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -45,7 +45,7 @@ const QuestionGenerator = (props) => {
       data.append('document', fileData)
       data.append('question',question)
       data.append('criteria',criterion)
-      const response = await fetch("http://localhost:5000/file/upload", {
+      const response = await fetch("http://159.65.152.103:5000/file/upload", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
