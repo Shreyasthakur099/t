@@ -15,7 +15,7 @@ function NewUserModal() {
 
     const handleCreate=async (e)=>{
         
-        if(cred.password==cred.cpassword){const response = await fetch('http://159.65.152.103:5000/auth/register',{
+        if(cred.password==cred.cpassword){const response = await fetch('http://68.183.87.5:5000/auth/register',{
             method: "POST", // *GET, POST, PUT, DELETE, etc.
 
             headers: {

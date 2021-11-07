@@ -19,7 +19,7 @@ const Admin = () => {
 
     useEffect(() => {
         window.scroll(0,document.body.scrollHeight)
-        const response = fetch("http://159.65.152.103:5000/auth/departments",{
+        const response = fetch("http://68.183.87.5:5000/auth/departments",{
             method: "GET", // *GET, POST, PUT, DELETE, etc.
         
         headers: {

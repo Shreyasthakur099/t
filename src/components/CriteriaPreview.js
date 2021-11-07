@@ -18,7 +18,7 @@ const CriteriaPreview = () => {
         // depta and criteria
         console.log(deptState,criteriaState)
        
-            const response = await fetch("http://159.65.152.103:5000/criteria/preCriteria ", {
+            const response = await fetch("http://68.183.87.5:5000/criteria/preCriteria ", {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
         
                 headers: {
