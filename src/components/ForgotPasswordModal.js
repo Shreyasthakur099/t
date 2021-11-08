@@ -14,7 +14,7 @@ function ForgotPasswordModal() {
     };
     const handlePassword=async (e)=>{
         
-        if(cred.password==cred.cpassword){const response = await fetch('http://68.183.87.5:5000/auth/update',{
+        if(cred.password==cred.cpassword){const response = await fetch('http://143.110.255.113:5000/auth/update',{
             method: "POST", // *GET, POST, PUT, DELETE, etc.
 
             headers: {

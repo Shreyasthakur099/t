@@ -116,7 +116,7 @@ const Form = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     window.name=cred.username
-    const response1 = await fetch("http://68.183.87.5:5000/auth/login", {
+    const response1 = await fetch("http://143.110.255.113:5000/auth/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
 
       headers: {

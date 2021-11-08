@@ -13,7 +13,7 @@ const Coordinator = () => {
     const {modal} = context
     useEffect(() => {
         
-        const response = fetch("http://68.183.87.5:5000/auth/departments",{
+        const response = fetch("http://143.110.255.113:5000/auth/departments",{
             method: "GET", // *GET, POST, PUT, DELETE, etc.
         
         headers: {
