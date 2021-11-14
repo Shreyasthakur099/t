@@ -16,7 +16,7 @@ const Criteria1 = (props) => {
     let location = useLocation()
     let history = useHistory()
     const context = useContext(criteriaContext);
-    const {submitCriteria,error,setError,setCount,count,setLoading,getCriteria,setCriteria,criteria,setStatus, status, loading,modal} = context
+    const {submitCriteria,error,setError,setLoading,getCriteria,setCriteria,criteria,setStatus, status, loading,modal} = context
     const text = props.preview?"Update":"Preview"
     let total=0
 
@@ -34,7 +34,8 @@ const Criteria1 = (props) => {
 
     const handleClick = (e)=>{
         // setError('Do you want to save the criteria?')
-         if(num==count){setLoading(true)
+        console.log(criteria.length)
+         if(criteria.length==num){setLoading(true)
          const k = window.confirm("Do you wish to submit criteria?")
         if(k===true){
             
@@ -51,7 +52,7 @@ const Criteria1 = (props) => {
     }
 
     useEffect(() => {
-        setCount(0)
+       
         window.history.pushState(null, null, window.location.href)
         setStatus(null)
        setLoading(false)
