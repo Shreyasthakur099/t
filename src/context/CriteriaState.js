@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const CriteriaState = (props) => {
     const [error,setError] = useState('')
+    const [count,setCount] = useState()
 
     const [criteria, setCriteria] = useState(null);
     const [department,setDepartment] = useState();
@@ -24,7 +25,7 @@ const CriteriaState = (props) => {
       // const k = window.confirm("Do you wish to submit criteria?")
          
           let criteriaData = criteria!==null?criteria:localStorage.getItem('recent')
-          const response = await fetch("http://143.110.255.113:5000/criteria/submit", {
+          const response = await fetch("http://localhost:5000/criteria/submit", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -48,7 +49,7 @@ const CriteriaState = (props) => {
     const uploadFile = async (name) => {
       
         
-        const response = await fetch("http://143.110.255.113:5000/file/upload", {
+        const response = await fetch("http://localhost:5000/file/upload", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -69,7 +70,7 @@ const CriteriaState = (props) => {
 
     const getCriteria = async (criteriaName) => {
       setLoading(true)
-        const response = await fetch(`http://143.110.255.113:5000/criteria/getCriteria`, {
+        const response = await fetch(`http://localhost:5000/criteria/getCriteria`, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           
           headers: {
@@ -93,7 +94,7 @@ const CriteriaState = (props) => {
       };
       const getUser = async (e) => {
         setLoading(true)
-        const response1 = await fetch("http://143.110.255.113:5000/auth/getUser", {
+        const response1 = await fetch("http://localhost:5000/auth/getUser", {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -137,7 +138,7 @@ console.log(criteria)
 
 const fileDownload=async(question)=>{
   
-  const response = await fetch("http://143.110.255.113:5000/file/download",{
+  const response = await fetch("http://localhost:5000/file/download",{
     method: "POST", // *GET, POST, PUT, DELETE, etc.
           
           headers: {
@@ -155,7 +156,7 @@ const fileDownload=async(question)=>{
 
     
     return (
-        <CriteriaContext.Provider value={{error,setError,setStatus,status,modal,setModal,fileDownload,handleChange,setLoading, loading,submit,department,setSubmit,setCriteria,criteria,submitCriteria,uploadFile,getCriteria,setDepartment,getUser}}>
+        <CriteriaContext.Provider value={{count,setCount,error,setError,setStatus,status,modal,setModal,fileDownload,handleChange,setLoading, loading,submit,department,setSubmit,setCriteria,criteria,submitCriteria,uploadFile,getCriteria,setDepartment,getUser}}>
         {props.children}
       </CriteriaContext.Provider>
     )

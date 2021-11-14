@@ -16,16 +16,25 @@ const Criteria1 = (props) => {
     let location = useLocation()
     let history = useHistory()
     const context = useContext(criteriaContext);
-    const {submitCriteria,error,setError,setLoading,getCriteria,setCriteria,criteria,setStatus, status, loading,modal} = context
+    const {submitCriteria,error,setError,setCount,count,setLoading,getCriteria,setCriteria,criteria,setStatus, status, loading,modal} = context
     const text = props.preview?"Update":"Preview"
     let total=0
 
     const state = !localStorage.getItem(props.criteria)?(JSON.parse(localStorage.getItem('recent')))  :(JSON.parse(localStorage.getItem(props.criteria)))
 
+    const num = 
+    props.criteria==='1'?11:
+    props.criteria==='2'?19:
+    props.criteria==='3'?31:
+    props.criteria==='4'?15:
+    props.criteria==='5'?13:
+    props.criteria==='6'?16:
+    props.criteria==='7'&&13
+
 
     const handleClick = (e)=>{
         // setError('Do you want to save the criteria?')
-         setLoading(true)
+         if(num==count){setLoading(true)
          const k = window.confirm("Do you wish to submit criteria?")
         if(k===true){
             
@@ -34,11 +43,15 @@ const Criteria1 = (props) => {
         setCriteria(null)
         !JSON.parse(localStorage.getItem('done')).includes(props.criteria)&&localStorage.setItem('done',JSON.stringify(JSON.parse(localStorage.getItem('done')).concat([props.criteria])))
         JSON.parse(localStorage.getItem('done')).map(i=>getCriteria(i))}
-      setLoading(false)
+      setLoading(false)}
+      else{
+          setError('Please fill the complete form before submitting')
+      }
         
     }
 
     useEffect(() => {
+        setCount(0)
         window.history.pushState(null, null, window.location.href)
         setStatus(null)
        setLoading(false)
