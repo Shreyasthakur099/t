@@ -123,7 +123,7 @@ const QuestionGenerator = (props) => {
       data.append('criteria',criterion)
       
       
-      const response = await fetch("http://localhost:5000/file/upload", {
+      const response = await fetch("http://143.110.255.113:5000/file/upload", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -142,7 +142,7 @@ const QuestionGenerator = (props) => {
     ////////////////////
     const handleDownload = async(e)=>{
       e.preventDefault()
-      const response = await fetch("http://localhost:5000/file/document/download", {
+      const response = await fetch("http://143.110.255.113:5000/file/document/download", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -164,7 +164,7 @@ const QuestionGenerator = (props) => {
     }
     const handleDownloadTemplate = async(e)=>{
       e.preventDefault()
-      const response = await fetch("http://localhost:5000/file/template/download", {
+      const response = await fetch("http://143.110.255.113:5000/file/template/download", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
 
           headers: {

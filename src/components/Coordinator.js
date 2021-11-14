@@ -13,7 +13,7 @@ const Coordinator = () => {
   const context = useContext(criteriaContext);
   const { modal } = context;
   useEffect(() => {
-    fetch("http://localhost:5000/auth/departments", {
+    fetch("http://143.110.255.113:5000/auth/departments", {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
 
       headers: {

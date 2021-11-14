@@ -19,7 +19,7 @@ const Admin = () => {
   const { modal, setModal } = context;
   let data = []
   const getStatus = async(e)=>{
-    const response = await fetch("http://localhost:5000/auth/status ", {
+    const response = await fetch("http://143.110.255.113:5000/auth/status ", {
     method: "GET", // *GET, POST, PUT, DELETE, etc.
 
     headers: {
@@ -35,7 +35,7 @@ const Admin = () => {
   useEffect(() => {
     
     window.scroll(0, document.body.scrollHeight);
-    fetch("http://localhost:5000/auth/departments", {
+    fetch("http://143.110.255.113:5000/auth/departments", {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
 
       headers: {

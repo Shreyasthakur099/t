@@ -14,7 +14,7 @@ function Coordinator() {
     let response;
     console.log(deptState, criteriaState);
     if (deptState !== "" && criteriaState !== "") {
-      response = await fetch("http://localhost:5000/csv/department/criteria ", {
+      response = await fetch("http://143.110.255.113:5000/csv/department/criteria ", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
 
         headers: {
@@ -36,7 +36,7 @@ function Coordinator() {
 
     //dept
     else if (deptState !== "" && criteriaState === "") {
-      response = await fetch("http://localhost:5000/csv/department ", {
+      response = await fetch("http://143.110.255.113:5000/csv/department ", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
 
         headers: {
@@ -54,7 +54,7 @@ function Coordinator() {
     }
     //criteria
     else if (deptState === "" && criteriaState !== "") {
-      response = await fetch("http://localhost:5000/csv/criteria ", {
+      response = await fetch("http://143.110.255.113:5000/csv/criteria ", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
 
         headers: {
@@ -76,7 +76,7 @@ function Coordinator() {
     else if (questionState !== "") {
       setCriteriaState("");
       setdeptState("");
-      response = await fetch("http://localhost:5000/csv/question", {
+      response = await fetch("http://143.110.255.113:5000/csv/question", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
 
         headers: {
@@ -92,7 +92,7 @@ function Coordinator() {
       FileSaver.saveAs(blob, `AllDepartment_${questionState}.csv`);
       console.log(typeof data);
     } else {
-      response = await fetch("http://localhost:5000/csv/allData ", {
+      response = await fetch("http://143.110.255.113:5000/csv/allData ", {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
 
         headers: {

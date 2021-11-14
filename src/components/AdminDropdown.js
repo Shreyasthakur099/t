@@ -30,7 +30,7 @@ const AdminDropdown = () => {
         // depta and criteria
         console.log(deptState,criteriaState)
        
-            const response = await fetch("http://localhost:5000/criteria/preCriteria ", {
+            const response = await fetch("http://143.110.255.113:5000/criteria/preCriteria ", {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
         
                 headers: {
@@ -53,7 +53,7 @@ const AdminDropdown = () => {
 
         const handleDownload = async(e)=>{
           e.preventDefault()
-          const response = await fetch("http://localhost:5000/file/document/download", {
+          const response = await fetch("http://143.110.255.113:5000/file/document/download", {
               method: "POST", // *GET, POST, PUT, DELETE, etc.
         
               headers: {
@@ -72,7 +72,7 @@ const AdminDropdown = () => {
         }
         const handleDownloadTemplate = async(e)=>{
           e.preventDefault()
-          const response = await fetch("http://localhost:5000/file/template/download", {
+          const response = await fetch("http://143.110.255.113:5000/file/template/download", {
               method: "POST", // *GET, POST, PUT, DELETE, etc.
     
               headers: {
