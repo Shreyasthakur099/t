@@ -18,7 +18,7 @@ const CriteriaPreview = () => {
         // depta and criteria
         console.log(deptState,criteriaState)
        
-            const response = await fetch("http://143.110.255.113:5000/criteria/preCriteria ", {
+            const response = await fetch("http://localhost:5000/criteria/preCriteria ", {
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
         
                 headers: {
@@ -41,7 +41,7 @@ const CriteriaPreview = () => {
                         <h1 className = "text-blue-900 mb-8 font-bold text-4xl">View criteria </h1>
                         <h2 className="mb-6">View different criteria using the below options</h2>
                         
-                        <select  className="w-2/12 selectList1 mx-10 py-2 q rounded border-blue-700 border-2 h-10 w-48 pl-4 focus:outline-none text-lg text-gray-700"
+                        <select  className="w-3/12 selectList1 mx-10 py-2 q rounded border-blue-700 border-2 h-10 w-48 pl-4 focus:outline-none text-lg text-gray-700"
                             value={deptState} 
                             onChange={(e) =>{
                                 const selectedDep = e.target.value;
@@ -56,7 +56,7 @@ const CriteriaPreview = () => {
                         </select>
 
                         <select name="selectList2" 
-                        className="w-2/12 selectList1 mx-10 py-2 q rounded border-blue-700 border-2 h-10 w-48 pl-4 focus:outline-none text-lg text-gray-700"
+                        className="w-3/12 selectList1 mx-10 py-2 q rounded border-blue-700 border-2 h-10 w-48 pl-4 focus:outline-none text-lg text-gray-700"
                             value={criteriaState} 
                             onChange={(e) =>{
                                 const selectedCri = e.target.value;
@@ -64,15 +64,23 @@ const CriteriaPreview = () => {
                                 localStorage.removeItem(criteriaState)
                                 setPreview(false)
                             }}
-                        >
-                            <option selected value="">Select Criteria</option>
+                        >   <option selected value="">Select Criteria</option>
+                            {localStorage.getItem('role')==='admin'?<>
                             <option value="1">Criteria 1</option>
                             <option value="2">Criteria 2</option>
                              <option value="3">Criteria 3</option>
                              <option value="4">Criteria 4</option>
                             <option value="5">Criteria 5</option>
                              <option value="6">Criteria 6</option>
-                            <option value="7">Criteria 7</option>
+                            <option value="7">Criteria 7</option></>:
+                            localStorage.getItem('department').includes('1')?<option value="1">Criteria 1</option>:
+                            localStorage.getItem('department').includes('2')?<option value="2">Criteria 2</option>:
+                            localStorage.getItem('department').includes('3')?<option value="3">Criteria 3</option>:
+                            localStorage.getItem('department').includes('4')?<option value="4">Criteria 4</option>:
+                            localStorage.getItem('department').includes('5')?<option value="5">Criteria 5</option>:
+                            localStorage.getItem('department').includes('6')?<option value="6">Criteria 6</option>:
+                            localStorage.getItem('department').includes('7')&&<option value="7">Criteria 7</option>
+                            }
                          
                         </select>
                        

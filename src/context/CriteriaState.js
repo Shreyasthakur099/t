@@ -6,9 +6,11 @@ import { useState } from "react";
 
 
 const CriteriaState = (props) => {
+    const [error,setError] = useState('')
+
     const [criteria, setCriteria] = useState(null);
     const [department,setDepartment] = useState();
-    const [loading, setLoading] = useState()
+    const [loading, setLoading] = useState(false)
     const [status,setStatus] = useState("notSubmitted")
     const [modal,setModal] = useState("");
     // const [newUser,setModal] = useState(false);
@@ -18,10 +20,11 @@ const CriteriaState = (props) => {
     const [submit,setSubmit] = useState(0)
 
     const submitCriteria = async (name) => {
-      
-          setStatus("submitted")
+      setLoading(true)
+      // const k = window.confirm("Do you wish to submit criteria?")
+         
           let criteriaData = criteria!==null?criteria:localStorage.getItem('recent')
-          const response = await fetch("http://143.110.255.113:5000/criteria/submit", {
+          const response = await fetch("http://localhost:5000/criteria/submit", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -32,6 +35,9 @@ const CriteriaState = (props) => {
           body: JSON.stringify({name,criteriaData}), // body data type must match "Content-Type" header
         });
         const data = await response.json()
+        setError('Criteria Submitted')
+        setStatus('submitted')
+        
         console.log("ok")
        
        
@@ -42,7 +48,7 @@ const CriteriaState = (props) => {
     const uploadFile = async (name) => {
       
         
-        const response = await fetch("http://143.110.255.113:5000/file/upload", {
+        const response = await fetch("http://localhost:5000/file/upload", {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -62,8 +68,8 @@ const CriteriaState = (props) => {
     }
 
     const getCriteria = async (criteriaName) => {
-      
-        const response = await fetch(`http://143.110.255.113:5000/criteria/getCriteria`, {
+      setLoading(true)
+        const response = await fetch(`http://localhost:5000/criteria/getCriteria`, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           
           headers: {
@@ -80,18 +86,14 @@ const CriteriaState = (props) => {
         //console.log(json)
         // localStorage.setItem(criteriaName,(JSON.stringify(data)))
         data.length!==0&&localStorage.setItem(criteriaName,JSON.stringify(data))
-        // console.log(criteriaName)
         
-        // console.log(JSON.parse(localStorage.getItem(criteriaName)))
-        // if(json){
-        // const {a,b,c,d,e,f,g,h,i,j,k} = json
-        // setCriteria1({a,b,c,d,e,f,g,h,i,j,k})}
+        
         return true
         
       };
       const getUser = async (e) => {
-        
-        const response1 = await fetch("http://143.110.255.113:5000/auth/getUser", {
+        setLoading(true)
+        const response1 = await fetch("http://localhost:5000/auth/getUser", {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
     
           headers: {
@@ -102,7 +104,7 @@ const CriteriaState = (props) => {
            // body data type must match "Content-Type" header
         })
         const info = await response1.json();
-        console.log("getUser")
+        console.log(info)
     
         
           //redirect
@@ -112,39 +114,10 @@ const CriteriaState = (props) => {
           localStorage.setItem('username',   info.username);
           localStorage.setItem('done',JSON.stringify(info.done))
           
-          // sUser(jsonUser._id,jsonToken)
-          
-        // } else {
-        //   console.log("NOPE");
-        // }
+         
       };
 
-//   const getCsv = async()=>{
-//     const response = await fetch('http://143.110.255.113:5000/api/csv', {
-//           method: "GET", // *GET, POST, PUT, DELETE, etc.
-//           headers: {
-            
-//             "auth-token":localStorage.token
-//           }
-//   })
-//    //console.log(response)
-//    const json = await response.json()
-//    console.log(json)
-//   // const json = await response.text()
-//   // console.log(json)
-//   // FileSaver.saveAs(json)
-//   // //  console.log(json)
-//   const csvStringifier = createCsvStringifier({
-//     header: [
-//         {id: 'Question', title: 'Question'},
-//         {id: 'Year', title: 'Year'},
-//         {id: 'Number', title: 'Number'}
-//     ]
-// });
-// console.log(csvStringifier.getHeaderString());
-// let blob = new Blob([csvStringifier.getHeaderString()+csvStringifier.stringifyRecords(json)], {type: "text/plain;charset=utf-8"});
-// FileSaver.saveAs(blob, "data.csv")
-// }
+//   
 
 const handleChange= (e)=>{
 
@@ -159,11 +132,12 @@ else{
 
 console.log(criteria)
 
+
 }
 
 const fileDownload=async(question)=>{
   
-  const response = await fetch("http://143.110.255.113:5000/file/download",{
+  const response = await fetch("http://localhost:5000/file/download",{
     method: "POST", // *GET, POST, PUT, DELETE, etc.
           
           headers: {
@@ -174,13 +148,14 @@ const fileDownload=async(question)=>{
           body: JSON.stringify({question, department:localStorage.department})
   })
   const data = await response.json()
+  console.log(data)
   saveAs(data,"ok")
 }
 
 
     
     return (
-        <CriteriaContext.Provider value={{status,modal,setModal,fileDownload,handleChange,setLoading, loading,submit,department,setSubmit,setCriteria,criteria,submitCriteria,uploadFile,getCriteria,setDepartment,getUser}}>
+        <CriteriaContext.Provider value={{error,setError,setStatus,status,modal,setModal,fileDownload,handleChange,setLoading, loading,submit,department,setSubmit,setCriteria,criteria,submitCriteria,uploadFile,getCriteria,setDepartment,getUser}}>
         {props.children}
       </CriteriaContext.Provider>
     )
