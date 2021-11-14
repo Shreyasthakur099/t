@@ -34,8 +34,10 @@ const Criteria1 = (props) => {
 
     const handleClick = (e)=>{
         // setError('Do you want to save the criteria?')
-        console.log(criteria.length)
-         if(criteria.length==num){setLoading(true)
+        // console.log(criteria.length)
+         if(criteria!=null){
+             
+            if(criteria.length==num){setLoading(true)
          const k = window.confirm("Do you wish to submit criteria?")
         if(k===true){
             
@@ -47,7 +49,8 @@ const Criteria1 = (props) => {
       setLoading(false)}
       else{
           setError('Please fill the complete form before submitting')
-      }
+      }}
+      else{setError('Please fill the complete form before submitting')}
         
     }
 
